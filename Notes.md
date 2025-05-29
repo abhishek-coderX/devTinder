@@ -39,3 +39,14 @@ reading query params -- passed dynamically
     console.log(req.params)
 
 Reading about dynamic routing 
+
+
+//MORE PLAYING WITH ROUTES
+
+app.use('/user', ()=>{},()=>{}  aise karke kitna bhi route send kar skte hai also 
+arry of routes bhi pass kar sakte hai and ek ka arry 2 ka arry and evrything)
+
+next()  express find karta hai ki aage koi route hai kya
+res.send karne ke baad next  rote again kuch send nahi kar sakta kyuki alredy send 
+hogaya hai response tcp connection banta hai and send hota hai than close ho jata hai
+
