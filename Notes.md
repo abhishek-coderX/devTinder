@@ -94,7 +94,33 @@ when some user type data is coming
 -to send data from json in postman we need to define json parser before the routes
 -Add this line to parse JSON bodies --> app.use(express.json());
 
-//
+-js object vs json object 
+-req is readable stream which have lots of data req.body se we can get the post data we send to api but it is undefined 
+-to use it we need to convert json into js object to read  or we can say parse the data to json than we can read so we use middleware express.json() to 
+-app.use(express.json()); as said earlier
+
+
+
+
+//lets a read the data from the database and craete /feed and  enjoy
+-use method .find to get the data from the datbase 
+-no typo mistake should be there it should be same as defined in the schema
+-findout which is written when empty object is passed ist arbitary or the first one or we say oldest
+-findOne if more then one doc is there which will be written 
+-api and try out other methods of model 
+
+
+//lets update and delete the data from the database'
+-create a delete user api delete and play with the documentation
+-create and update user api and play with the doc
+-differnce between patch and put  
+-explore the model methods in doc and always refer the doc for any sort of confusion and errors first 
+-api update with userID and also do it with emailid
+-ackend key (in req.body) must exactly match the JSON key sent by the client.
+-The variable name you assign it to (like userId) can be anything you want.
+
+    
+
 
 
 
