@@ -62,4 +62,39 @@ when request send to express it will match and if match it will send the respons
 -differenece between app.use and app.all both are almost same but needs
 -write a dummy auth middleware for admin
 -write a dummy auth middleware for user except login
+-error handling using app.use and always write it at the end 
+-use try catch block for error handling
+
+
+
+//database how to connect mongoose.connect("clusterurl")
+
+-create free cluster on mongodb atlas website
+-connect you application to databse and with mongoose
+-call the db funtion and connect to database begore listining to port starting application
+
+//schema so refer to mongoose doc its very handy when you are stuck 
+
+-schema is basically defining the model of collection how the user collection will look
+name,pass,email and lot more other details 
+-create user schema and then user model and export the user model
+-model is like a class suppose its user model then it will store the instance of user class
+when some user type data is coming
+-after creating schema and model we can craete api to store data in the collection
+
+
+//lets insert the data in the database
+-we create a post api to send the data to collection and 
+-we will create signup api for signup of the user which means creating a new instace of model user with new keyword
+-most of the mongoose functions give promises so we use asyn await most of the time 
+-the schema defined only that values are stored in database other info trying to post is not stored and ignored because model hi nahi hai waise 
+-mondodb adds _id by default we can also mess and play with it but its kyu karna hai  and __v (version)
+-push some document with postman into user collection and play ithit
+-use trycatch block to handle the error efficiently
+-to send data from json in postman we need to define json parser before the routes
+-Add this line to parse JSON bodies --> app.use(express.json());
+
+//
+
+
 
