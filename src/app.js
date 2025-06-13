@@ -4,64 +4,34 @@ const connectToDb = require("./config/database");
 const User = require("./models/user");
 const { model } = require("mongoose");
 const validator = require("validator");
-
+const {validateSignupData}=require("./utils/validation")
+const bcrypt=require("bcrypt")
 app.use(express.json());
 
+
 app.post("/signup", async (req, res) => {
-  const {
-    firstName,
-    lastName,
-    email,
-    password,
-    age,
-    gender,
-    photoUrl,
-    about,
-    skills,
-  } = req.body;
-
   try {
-    //required Fields
-    if (!firstName || !email || !password || !skills) {
-      return res.status(400).send("Missing required fields");
-    }
+    await validateSignupData(req);
 
-    //name check
-    if (firstName.trim().length < 3) {
-      return res
-        .status(400)
-        .send("First name must be at least 3 characters long");
-    }
-
-    //email check
-    if (!validator.isEmail(email)) {
-      return res.status(400).send("Invalid email format");
-    }
-
-    //password check
-    if (password.length < 6) {
-      return res.status(400).send("Password must be at least 6 characters");
-    }
-
-    //skills check
-    if (!Array.isArray(skills) || skills.length < 1) {
-      return res.status(400).send("At least one skill is required");
-    }
-    if (skills.length > 10) {
-      return res.status(400).send("Maximum 10 skills allowed");
-    }
-
-    //existing user check
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(409).send("Email already exists");
-    }
-
-     const user = new User({
+    const {
       firstName,
       lastName,
       email,
-      password, 
+      password,
+      age,
+      gender,
+      photoUrl,
+      about,
+      skills,
+    } = req.body;
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash,
       age,
       gender,
       photoUrl,
@@ -72,9 +42,38 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.status(201).send("Signup successful");
   } catch (error) {
-    res.status(500).send("error saving the data" + error.message);
+    res.status(400).send("Error saving the data: " + error.message);
   }
 });
+
+
+app.post("/login",async(req,res)=>{
+  try {
+    //email and password nikalo
+    const {email,password}=req.body
+    
+    const user=await User.findOne({email}).select("+password")
+    if(!user)
+    {
+      throw new Error("Email or password is invalid")
+    }
+
+    const isPasswordValid=await bcrypt.compare(password,user.password)
+
+    if(isPasswordValid)
+    {
+      res.send("Login Successful")
+    }
+    else{
+      throw new Error("Email or password is invalid")
+    }
+
+    
+  } catch (error) {
+    res.status(400).send("Error saving the data: " + error.message);
+  }
+})
+
 
 app.get("/users", async (req, res) => {
   const userEmail = req.body.email;

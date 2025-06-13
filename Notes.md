@@ -136,3 +136,20 @@ when some user type data is coming
 - this is data sanitizing means before entering the data to database sanitize it
 - never trust the userdata attackers can exploit the apis so make sure to add all the validation and sanitization
 - explore the validator library functions use for password and email and phtouril and many moer
+- never trust req.body also seek validation and sanitization
+
+
+
+//password hashing and helpers file
+- define helper functions for validation logic of signupdata
+- install bcrypt library and create a password hash
+- and save user with encrypted password 
+
+
+//lets create a login api 
+- wwrite the logic 
+- compare the password 
+- write the error messages and all
+
+
+
