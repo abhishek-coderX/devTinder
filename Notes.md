@@ -135,3 +135,4 @@ when some user type data is coming
 - add api validation for each fields
 - this is data sanitizing means before entering the data to database sanitize it
 - never trust the userdata attackers can exploit the apis so make sure to add all the validation and sanitization
+- explore the validator library functions use for password and email and phtouril and many moer
