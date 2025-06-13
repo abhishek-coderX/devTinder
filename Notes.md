@@ -116,11 +116,22 @@ when some user type data is coming
 -differnce between patch and put  
 -explore the model methods in doc and always refer the doc for any sort of confusion and errors first 
 -api update with userID and also do it with emailid
--ackend key (in req.body) must exactly match the JSON key sent by the client.
+-backend key (in req.body) must exactly match the JSON key sent by the client.
 -The variable name you assign it to (like userId) can be anything you want.
 
     
 
+//validation at schema level
+
+- refer mongoose schematypes for various validation and explore it
+- we implemented basic required,lowercase,unique,trim,min for number and minLength for string,validate,default
+- validate function runs only when new object is created not for patch and put to use options.validator  refer  officialdocumentation
+- timestamps provided by mongoose we can do custom by createdAt and passing the datae for recording the time  when user registered
+- improve the db schema put all the required validation for the db 
 
 
-
+//aab api validation dekhenge
+- put api level validation for patch and post api
+- add api validation for each fields
+- this is data sanitizing means before entering the data to database sanitize it
+- never trust the userdata attackers can exploit the apis so make sure to add all the validation and sanitization
