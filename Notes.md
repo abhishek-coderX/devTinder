@@ -152,4 +152,23 @@ when some user type data is coming
 - write the error messages and all
 
 
+- when we login email and password is send and the server authenicates and gererates the JWT TOKEN and wraps inside cookie
+- aab when ever any api call we make like the post commnet view profile get profile update or any operstion 
+- the server validates the cookies everytime to see if user is authentic so token is shared in header in  every request
+- so the web comes up with the solution of cookies to store this at user side 
+- login just inject the token 
+- then we need cookie parser to parse the cookie and read the value
 
+
+- install cookie parser
+- send a dummy cookie
+- create Get/profile api and check if you get the cookie back
+- install jsonwebtoken
+- In login api after email and password validation  create a jwt token and send it to the user in cookie
+- read the cookie and also extract the userid of the logged in user
+
+
+- now lets create the middleware to handle all this functionality
+- userAuth middleware
+- add userAuth into login and profile api and new sendconnection api 
+- set the expiry of jwt token and cookies to 7 days

@@ -6,8 +6,12 @@ const { model } = require("mongoose");
 const validator = require("validator");
 const {validateSignupData}=require("./utils/validation")
 const bcrypt=require("bcrypt")
-app.use(express.json());
+const cookieparser=require("cookie-parser")
+const jwt=require('jsonwebtoken');
+const userAuth = require("./middlewares/Auth");
 
+app.use(express.json());
+app.use(cookieparser())
 
 app.post("/signup", async (req, res) => {
   try {
@@ -61,7 +65,9 @@ app.post("/login",async(req,res)=>{
     const isPasswordValid=await bcrypt.compare(password,user.password)
 
     if(isPasswordValid)
-    {
+    {  
+      const token= await jwt.sign({_id:user._id},"JWTSECRET")
+      res.cookie("token",token)
       res.send("Login Successful")
     }
     else{
@@ -72,6 +78,19 @@ app.post("/login",async(req,res)=>{
   } catch (error) {
     res.status(400).send("Error saving the data: " + error.message);
   }
+})
+
+app.get("/profile", userAuth async (req,res)=>{
+    const cookies=req.cookies
+    const {token}=cookies
+    //validate the token
+    
+    const decodeMessage= await jwt.verify(token,"JWTSECRET")
+    console.log(decodeMessage)
+    const {_id}=decodeMessage
+    console.log(cookies)
+    console.log(_id.user)
+    res.send("Reading the cookies");
 })
 
 

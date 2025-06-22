@@ -1,31 +1,35 @@
-const AdminAuth=(req,res,next)=>{
-    console.log("Admin check");
-    const token="abc"
-    const AdminToken= token==="abc"
-    if(!AdminToken)
+const jwt=require("jsonwebtoken")
+const User=require("./models/user")
+const userAuth=async (req,res,next)=>{
+
+    try {
+        
+    const {token}=req.cookies
+
+    if(!token)
     {
-        res.status(401).send("unauthorized admin")
+        throw new Error("email or password is incorrect");
+        
     }
-    else{
-        next()
-    }
-}
 
-const UserAuth=(req,res,next)=>{
-    console.log("User check");
-    const token="abc"
-    const UserToken= token==="abc"
-    if(!UserToken)
+    const decodedObj= jwt.verify(token,"JWTSECRET")
+
+    const {id}=decodedObj
+
+    const user=await User.findById(id)
+
+    if(!user)
     {
-        res.status(401).send("unauthorized user")
+        throw new Error("email or password is incorrect")
     }
-    else{
-        next()
+    next()
+
+    } catch (error) {
+        res.status(400).send("email or password is incorrect")
+        
     }
+
+    
 }
 
-
-module.exports={
-    AdminAuth,
-    UserAuth
-}
+module.exports =userAuth
