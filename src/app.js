@@ -1,12 +1,25 @@
-
 const express = require("express");
 const app = express();
 const connectToDb = require("./config/database");
 const User = require("./models/user"); 
 const cookieparser = require("cookie-parser");
 
+
 app.use(express.json());
 app.use(cookieparser());
+
+//import karo routers
+const authRouter=require('./routes/auth');
+const profileRouter=require('./routes/profile');
+const requestRouter=require('./routes/requests');
+
+
+app.use('/',authRouter)
+app.use('/',profileRouter)
+app.use('/',requestRouter)
+
+
+
 
 app.get("/users", async (req, res) => {
   try {

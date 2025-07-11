@@ -188,3 +188,10 @@ when some user type data is coming
 - read the documentation of express router 
 - create authRouter profileRouter requestRouter and import in app.js
 - check the working of the apis made
+
+
+- aab jo list mein apis hai wo create karna hai 
+- create /logout, /profile/view ,/profile/edit
+- /profile/password =>ye forget password wala khud se kar 
+- make sure post and patch api validation kar aache se data dont trust the req.body user kuchh bhi send 
+- kar sakta hai 
