@@ -172,3 +172,19 @@ when some user type data is coming
 - userAuth middleware
 - add userAuth into login and profile api and new sendconnection api 
 - set the expiry of jwt token and cookies to 7 days
+
+
+- mongoose schema
+- helper methods 
+- Mongoose lets you attach custom methods to your schema — so logic like generating tokens, checking passwords, etc., can stay inside the model.
+
+
+- explore tinder api 
+- make a list of apis we will be crfeating
+- group the apis 
+
+- app.js should be clean routes folder will routers 
+- creates routes folder 
+- read the documentation of express router 
+- create authRouter profileRouter requestRouter and import in app.js
+- check the working of the apis made
