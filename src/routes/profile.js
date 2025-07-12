@@ -67,5 +67,37 @@ profileRouter.patch("/profile/password/edit", userAuth, async (req, res) => {
     res.status(400).send("Error: " + error.message);
   }
 });
+profileRouter.patch("/profile/password/forgot", async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      throw new Error("Email and new password are required");
+    }
+
+    if (!validator.isEmail(email)) {
+      throw new Error("Invalid email format");
+    }
+
+    if (!validator.isStrongPassword(newPassword)) {
+      throw new Error("Please enter a strong password");
+    }
+
+    const user = await User.findOne({ email }).select("+password");
+
+    if (!user) {
+      throw new Error("User with this email does not exist");
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+
+    await user.save();
+
+    res.send("Password reset successfully");
+  } catch (error) {
+    res.status(400).send("Error: " + error.message);
+  }
+});
 
 module.exports = profileRouter;

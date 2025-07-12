@@ -180,7 +180,7 @@ when some user type data is coming
 
 
 - explore tinder api 
-- make a list of apis we will be crfeating
+- make a list of apis we will be creating
 - group the apis 
 
 - app.js should be clean routes folder will routers 
@@ -192,10 +192,12 @@ when some user type data is coming
 
 - aab jo list mein apis hai wo create karna hai 
 - create /logout, /profile/view ,/profile/edit
-- /profile/password =>ye forget password wala khud se kar 
+- /profile/password/edit and /profile/password/forget =>ye forget password wala khud se kar 
 - make sure post and patch api validation kar aache se data dont trust the req.body user kuchh bhi send 
 - kar sakta hai 
 
+
+- advance concepts are staring from here
 
 - create a connection request schema add vadlidation
 - send connection request api
@@ -203,7 +205,12 @@ when some user type data is coming
 - think about all the corner cases
 - read about $or and $and  logical and comparison query in mongoose and read
 - read more about indexes in mongodb 
-- schema.pre("save") function
+- schema.pre("save") function kya hoata hai read
 - why do we need and advantages and disadvantages 
 - Always think about corner cases beacuse any attacker can exploit it
+
+
+
+- 
+
 
