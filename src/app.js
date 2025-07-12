@@ -12,38 +12,13 @@ app.use(cookieparser());
 const authRouter=require('./routes/auth');
 const profileRouter=require('./routes/profile');
 const requestRouter=require('./routes/requests');
-
+const userRouter=require("./routes/user")
 
 app.use('/',authRouter)
 app.use('/',profileRouter)
 app.use('/',requestRouter)
+app.use('/',userRouter)
 
-
-
-
-app.get("/users", async (req, res) => {
-  try {
-    const users = await User.find({ email: req.body.email });
-    if (users.length === 0) {
-      return res.status(404).send("No user found with that email.");
-    }
-    res.json(users);
-  } catch (err) {
-    res.status(500).send("Something went wrong.");
-  }
-});
-
-app.delete("/users/:userId", async (req, res) => {
-  try {
-    const user = await User.findByIdAndDelete(req.params.userId);
-    if (!user) {
-      return res.status(404).send("User not found.");
-    }
-    res.send("Deleted successfully.");
-  } catch (err) {
-    res.status(500).send("Something went wrong.");
-  }
-});
 
 connectToDb()
   .then(() => {

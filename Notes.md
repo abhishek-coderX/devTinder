@@ -209,8 +209,43 @@ when some user type data is coming
 - why do we need and advantages and disadvantages 
 - Always think about corner cases beacuse any attacker can exploit it
 
+###  Logic:
+-  Auth middleware applied (only logged-in users).
+-  Validate `status`: only `"interested"` or `"ignored"` allowed.
+-  Ensure `toUserId` exists in User collection.
+-  Block duplicate requests in any direction using `$or`.
+-  Prevent
 
 
-- 
+- write code with proper validation api POST /request/review/:status/:requestId
+
+###  Logic:
+-  Auth middleware applied.
+-  Validate `status`: only `"accepted"` or `"rejected"` allowed.
+-  Find the connection request:
+  - `requestId` should match
+  - `toUserId` must be the logged-in user
+  - `status` must be `"interested"`
+-  Update the `status` and save
+
+- take the thought process first think about happy flow corner cases then start writing the code
+
+
+
+- now we will write get apis and there is difference in both thought process
+- post matlab user is posting data attcker can attack the db so validation and attcker 
+- ko consider karo sabkuchh verify karo dont trust the req.body 
+- get matlab user sirf fetch kar sakta hai andisme sirf allowed access and authrorized user 
+- only get and verified user have scope and uska hi access hona chahiye
+- there was one error module.export karega to jab import karega {name}=require
+- nahi to simple const name=require
+- now simple get/request api is doen but we also need the user info ki kisne bheja hai not jsut
+- from and to userid so a good way to handle this is reference pass karenge ek model ka dusre ko 
+- using the ref in connection and user ka ref diya just populate karna hai
+- no overfetching be specific
+
+- read about ref and populate and create this api  get/user/requests/received 
+
+
 
 
