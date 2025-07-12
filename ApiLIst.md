@@ -11,8 +11,7 @@ profileRouter
 - PATCH/profile/password/edit
 
 connectionRequestRouter
-- POST /request/send/interested/:userId
-- POST /request/send/ignored/:userId
+- POST /request/send/:status/:toUserId
 - POST /request/review/accepted/:requestId
 - POST /request/review/rejected/:requestId
 
@@ -22,4 +21,4 @@ userRouter
 - GET/feed - Gets you the profiles of other users on platform
 
 
-status: ignore,interested,accepted,rejected 
+status: ignore,interested,accepted,rejected,pending

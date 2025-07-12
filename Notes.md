@@ -195,3 +195,15 @@ when some user type data is coming
 - /profile/password =>ye forget password wala khud se kar 
 - make sure post and patch api validation kar aache se data dont trust the req.body user kuchh bhi send 
 - kar sakta hai 
+
+
+- create a connection request schema add vadlidation
+- send connection request api
+- proper validation of data 
+- think about all the corner cases
+- read about $or and $and  logical and comparison query in mongoose and read
+- read more about indexes in mongodb 
+- schema.pre("save") function
+- why do we need and advantages and disadvantages 
+- Always think about corner cases beacuse any attacker can exploit it
+
