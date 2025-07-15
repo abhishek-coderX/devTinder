@@ -247,5 +247,23 @@ when some user type data is coming
 - read about ref and populate and create this api  get/user/requests/received 
 
 
+- now feed api 
+- what is the thought process 
+- you will only see cards of people whom you havent seen 
+- you will not see your card the cards you accepted and rejected also
+- read about query operator 
+- read the code small but little complex 
+- explore more comparison logical query opeartor
+- we will add pagination of api ek baar mein 10 hi load ho
+- explore what more you can do to enhance the api
+
+- lets talk about pagination
+- in get we can use query params
+- /feed?page=1&limit=10  =>1st 10    => .skip(0)&limit(10) =>
+- /feed?page=1&limit=10  =>11-20      =>.skip(10)&limit(20) 
+- /feed?page=1&limit=10  =>21-30
+- mongo mein easy hai 
+- .skip(0)&limit(10) =>
+
 
 
