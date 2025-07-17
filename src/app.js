@@ -3,10 +3,17 @@ const app = express();
 const connectToDb = require("./config/database");
 const User = require("./models/user"); 
 const cookieparser = require("cookie-parser");
-
+const cors=require("cors")
 
 app.use(express.json());
 app.use(cookieparser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
 
 //import karo routers
 const authRouter=require('./routes/auth');

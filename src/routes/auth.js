@@ -63,7 +63,7 @@ authRouter.post("/login",async(req,res)=>{
     {  
       const token= await jwt.sign({_id:user._id},"JWTSECRET")
       res.cookie("token",token)
-      res.send("Login Successful")
+      res.send(user)
     }
     else{
       throw new Error("Email or password is invalid")
@@ -71,7 +71,7 @@ authRouter.post("/login",async(req,res)=>{
 
     
   } catch (error) {
-    res.status(400).send("Error saving the data: " + error.message);
+    res.status(400).send("Error " + error.message);
   }
 })
 

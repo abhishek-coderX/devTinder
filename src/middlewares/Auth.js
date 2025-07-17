@@ -6,7 +6,7 @@ const userAuth = async (req, res, next) => {
     const { token } = req.cookies;
 
     if (!token) {
-      throw new Error("email or password is incorrect");
+      return res.status(401).send("Please Login");
     }
 
     const decodedObj = jwt.verify(token, "JWTSECRET");
@@ -21,7 +21,7 @@ const userAuth = async (req, res, next) => {
     req.user = user; 
     next();
   } catch (error) {
-    res.status(400).send("email or password is incorrect");
+    res.status(400).send("Error:" +error.message);
   }
 }; 
 
