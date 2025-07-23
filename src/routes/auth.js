@@ -38,8 +38,11 @@ authRouter.post("/signup", async (req, res) => {
       skills,
     });
 
-    await user.save();
-    res.status(201).send("Signup successful");
+   const savedUser= await user.save();
+    const token= await jwt.sign({_id:savedUser ._id},"JWTSECRET")
+      res.cookie("token",token)
+
+    res.json({message:"Signup successful",data:savedUser});
   } catch (error) {
     res.status(400).send("Error saving the data: " + error.message);
   }
