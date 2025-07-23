@@ -47,6 +47,11 @@ DevTinder allows developers to create profiles, view other users, send/receive c
 - **GET /user/connections**: Get all accepted connections.
 - **GET /feed**: Get a paginated list of other users you haven't interacted with.
 
+
+### chat
+
+- **GET /messages/:receiverId** : Fetches all messages between the logged-in user and the specified receiverId
+
 ---
 
 ## Data Models

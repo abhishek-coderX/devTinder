@@ -1,9 +1,15 @@
+const http = require('http');
+const { initializeSocket } = require('./socket/socket');
 const express = require("express");
-const app = express();
 const connectToDb = require("./config/database");
 const User = require("./models/user"); 
 const cookieparser = require("cookie-parser");
 const cors=require("cors")
+
+
+
+const app = express();
+const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cookieparser());
@@ -15,25 +21,33 @@ app.use(
 );
 
 
+
+
 //import karo routers
 const authRouter=require('./routes/auth');
 const profileRouter=require('./routes/profile');
 const requestRouter=require('./routes/requests');
 const userRouter=require("./routes/user")
+const chatRouter = require("./routes/chat"); 
 
+app.use('/', chatRouter);
 app.use('/',authRouter)
 app.use('/',profileRouter)
 app.use('/',requestRouter)
 app.use('/',userRouter)
 
 
+
+initializeSocket(server);
+
 connectToDb()
   .then(() => {
     console.log("Connected successfully");
-    app.listen(4000, () => {
+    server.listen(4000, () => {
       console.log("Server running on port 4000");
     });
   })
   .catch((err) => {
     console.log("Connection failed:", err); 
   });
+

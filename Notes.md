@@ -267,3 +267,8 @@ when some user type data is coming
 
 
 
+- now lets create a chat feature so that loggindin user can communicate with connections
+
+- install socket.io
+- create a modal for chat
+- crete a route GET /messages/:receiverId 
