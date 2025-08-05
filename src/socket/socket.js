@@ -25,7 +25,7 @@ const initializeSocket = (server) => {
 
       jwt.verify(token, "JWTSECRET", (err, decoded) => {
         if (err) {
-          console.error("Socket Auth Error:", err.message);
+          // console.error("Socket Auth Error:", err.message);
           return next(new Error("Authentication Error: Invalid token."));
         }
         socket.user = decoded;
@@ -37,7 +37,7 @@ const initializeSocket = (server) => {
   });
 
   io.on("connection", (socket) => {
-    console.log(`✅ User Connected: ${socket.user._id}`);
+    // console.log(`✅ User Connected: ${socket.user._id}`);
     
     // Set user as online
     onlineUsers.set(socket.user._id, socket.id);
@@ -65,7 +65,7 @@ const initializeSocket = (server) => {
     });
 
     socket.on("disconnect", () => {
-      console.log(`❌ User Disconnected: ${socket.user._id}`);
+      // console.log(`❌ User Disconnected: ${socket.user._id}`);
       onlineUsers.delete(socket.user._id);
       
       io.emit("getOnlineUsers", Array.from(onlineUsers.keys()));
