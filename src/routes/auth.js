@@ -39,7 +39,7 @@ authRouter.post("/signup", async (req, res) => {
     });
 
    const savedUser= await user.save();
-    const token= await jwt.sign({_id:savedUser ._id},"JWTSECRET")
+    const token= await jwt.sign({_id:savedUser ._id},process.env.JWT_SECRET)
       res.cookie("token",token)
 
     res.json({message:"Signup successful",data:savedUser});
@@ -64,7 +64,7 @@ authRouter.post("/login",async(req,res)=>{
 
     if(isPasswordValid)
     {  
-      const token= await jwt.sign({_id:user._id},"JWTSECRET")
+      const token= await jwt.sign({_id:user._id},process.env.JWT_SECRET)
       res.cookie("token",token)
       res.send(user)
     }

@@ -5,12 +5,14 @@ const connectToDb = require("./config/database");
 const User = require("./models/user"); 
 const cookieparser = require("cookie-parser");
 const cors=require("cors")
+const dotenv=require("dotenv")
 
 
 
 const app = express();
 const server = http.createServer(app);
 
+dotenv.config()
 app.use(express.json());
 app.use(cookieparser());
 app.use(

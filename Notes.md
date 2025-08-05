@@ -58,7 +58,7 @@ when request send to express it will match and if match it will send the respons
 //get /user=>middlewarechain=>request handler(wo wala route jo response send kar rah ahi matlab request handle kar raha hai)
 
 -what is middlewares read about itrt and 
--how espress jswork behind the scene to handle request
+-how espress js work behind the scene to handle request
 -differenece between app.use and app.all both are almost same but needs
 -write a dummy auth middleware for admin
 -write a dummy auth middleware for user except login
