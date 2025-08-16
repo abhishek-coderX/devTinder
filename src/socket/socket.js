@@ -23,7 +23,7 @@ const initializeSocket = (server) => {
         return next(new Error("Authentication Error: No token."));
       }
 
-      jwt.verify(token, "JWTSECRET", (err, decoded) => {
+      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
           // console.error("Socket Auth Error:", err.message);
           return next(new Error("Authentication Error: Invalid token."));

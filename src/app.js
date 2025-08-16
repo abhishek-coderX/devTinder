@@ -8,11 +8,12 @@ const cors=require("cors")
 const dotenv=require("dotenv")
 
 
-
 const app = express();
 const server = http.createServer(app);
 
 dotenv.config()
+const PORT=process.env.PORT || 4000
+
 app.use(express.json());
 app.use(cookieparser());
 app.use(
@@ -45,8 +46,8 @@ initializeSocket(server);
 connectToDb()
   .then(() => {
     console.log("Connected successfully");
-    server.listen(4000, () => {
-      console.log("Server running on port 4000");
+    server.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
