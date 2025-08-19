@@ -18,7 +18,9 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173",
+      "https://frontend-neon-iota.vercel.app"
+    ],
     credentials: true,
   })
 );
