@@ -39,9 +39,7 @@ const initializeSocket = (server) => {
   });
 
   io.on("connection", (socket) => {
-    // console.log(`✅ User Connected: ${socket.user._id}`);
     
-    // Set user as online
     onlineUsers.set(socket.user._id, socket.id);
 
     // CORRECTED: Broadcast the new list of online users to everyone

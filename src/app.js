@@ -28,7 +28,6 @@ app.use(
 
 
 
-//import karo routers
 const authRouter=require('./routes/auth');
 const profileRouter=require('./routes/profile');
 const requestRouter=require('./routes/requests');
