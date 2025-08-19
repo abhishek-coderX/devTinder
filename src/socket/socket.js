@@ -9,8 +9,10 @@ const onlineUsers = new Map();
 const initializeSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: "http://localhost:5173", // Your frontend URL
-      credentials: true,
+      origin: ["http://localhost:5173",
+      "https://frontend-neon-iota.vercel.app"
+    ],
+    credentials: true,
     },
   });
 
