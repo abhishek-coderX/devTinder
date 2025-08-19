@@ -49,8 +49,13 @@ authRouter.post("/signup", async (req, res) => {
 
     res.json({ message: "Signup successful", data: savedUser });
   } catch (error) {
-    res.status(400).send("Error saving the data: " + error.message);
+console.error(error);
+
+  if (error.code === 11000 && error.keyValue?.email) {
+    return res.status(400).json({ message: "Email already registered" });
   }
+
+  res.status(400).json({ message: error.message || "Something went wrong" });  }
 });
 
 authRouter.post("/login", async (req, res) => {
